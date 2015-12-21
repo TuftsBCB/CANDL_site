@@ -8,14 +8,15 @@ from email.mime.multipart import MIMEMultipart
 
 def main():
 
-  # SCRIPT_TO_RUN = "CANDL/crossDSD_III.py"
-  SCRIPT_TO_RUN = "CANDL/dummy_script.py"
+  SCRIPT_TO_RUN = "CANDL/crossDSD_III.py"
+  # SCRIPT_TO_RUN = "CANDL/dummy_script.py"
 
   G1 = sys.argv[1]
   G2 = sys.argv[2]
   LMs = sys.argv[3]
   email = sys.argv[4]
   opfile = sys.argv[5]
+
 
   today = str(datetime.date.today())
 

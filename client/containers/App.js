@@ -21,7 +21,7 @@ class MyApp extends Component {
     if (waiting === 1){
       myString = "Waiting for server..."
     } else if (success === 1) {
-      myString = "Upload succeeded. CANDL is running. We will email you the output."
+      myString = "Upload succeeded. CANDL is running."
       myID = "succ"
     } else if (failure === 1) {
       myString = "Script failed to run. Check the format of your data and try again."

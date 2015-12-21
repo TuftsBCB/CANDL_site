@@ -13,11 +13,13 @@ def main():
 
   d = sys.argv[5]
 
-  G1 = sys.argv[1]
-  G2 = sys.argv[2]
-  LMs = sys.argv[3]
+  G1 = d + sys.argv[1]
+  G2 = d + sys.argv[2]
+  LMs = d + sys.argv[3]
   email = sys.argv[4]
   opfile = d + 'output'
+
+  logfile = d + "_logfile"
 
 
   # --------------------------------------------------------------
@@ -28,7 +30,7 @@ def main():
 
 
   # Now run the script in the background, then exit 0 so client knows request got through.
-  to_run = "python run_CANDL_inner.py " + G1 + " " + G2 + " " + LMs + " " + email + " " + opfile + " &"
+  to_run = "python run_CANDL_inner.py " + G1 + " " + G2 + " " + LMs + " " + email + " " + opfile + " > " + logfile + " &"
   os.system(to_run)
 
   sys.exit(0) # tell the web app that all went well, the program is running.
