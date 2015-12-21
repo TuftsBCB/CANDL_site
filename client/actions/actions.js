@@ -21,6 +21,18 @@ export function changeEmail(email) {
 }
 
 export function submitAll(graph1, graph2, LMs, email) {
+
+  // -----------------------------------------------------------
+  // HERE IS WHERE YOU MAKE SURE all fields are well formed.
+  var origG1 = graph1.name;
+  var origG2 = graph2.name;
+  var allCorrect = origG1.endsWith('.ppi') && origG2.endsWith('.ppi');
+  // allCorrect = allCorrect && ... ;
+
+  if (!allCorrect) return { type: Constants.SUBMIT_FAILED,  };
+  // -----------------------------------------------------------
+
+
   return dispatch => {
     dispatch({ type: Constants.SUBMIT });
     sendFilesToServer(graph1, graph2, LMs, email).then(

@@ -31,7 +31,6 @@ router.post('/upload', (req, res) => {
     // otherwise send a noop so that the client knows everything went a-ok
     } else {
 
-
       var email = req.body.email;
       var fdr = 'uploads/' + "sub" + Date.now() + '/';
       fs.mkdir(fdr);
@@ -40,26 +39,26 @@ router.post('/upload', (req, res) => {
       var newG2name = req.files.graph2[0].filename;
       var newLMname = req.files.LMs[0].filename;
 
-      fs.rename('uploads/' +  req.files.graph1[0].filename, fdr + newG1name);
-      fs.rename('uploads/' +  req.files.graph2[0].filename, fdr + newG2name);
-      fs.rename('uploads/' +  req.files.LMs[0].filename, fdr + newLMname);
-
+      setTimeout(function(){
+        fs.rename('uploads/' +  req.files.graph1[0].filename, fdr + newG1name);
+        fs.rename('uploads/' +  req.files.graph2[0].filename, fdr + newG2name);
+        fs.rename('uploads/' +  req.files.LMs[0].filename, fdr + newLMname);
+      }, 100);
 
       var options = {
         args: [newG1name, newG2name, newLMname, email, fdr]
       };
 
-      PythonShell.run('run_CANDL.py', options, function (err) {
-        if (err) throw err;
-        console.log('finished');
+      PythonShell.run('run_CANDL_outer.py', options, function (err) {
+        if (err){
+          console.log('python error');
+          res.status(500);
+          res.json(e);
+        } else {
+          console.log('finished');
+          res.json({});
+        }
       });
-
-
-
-
-
-
-      res.json({});
     }
   });
 });

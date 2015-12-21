@@ -41,8 +41,26 @@ export default function reduce(state = initialState, action) {
 
   // not yet implemented
   case Constants.SUBMIT:
+      return assign({}, state, {
+      waiting: 1,
+      success: 0,
+      failure: 0,
+    });
+
   case Constants.SUBMIT_SUCCEEDED:
+      return assign({}, state, {
+      waiting: 0,
+      success: 1,
+      failure: 0,
+    });
+
   case Constants.SUBMIT_FAILED:
+      return assign({}, state, {
+      waiting: 0,
+      success: 0,
+      failure: 1,
+    });
+
     return state;
 
   default:

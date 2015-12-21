@@ -2,6 +2,8 @@
 
 export function sendFilesToServer(graph1, graph2, LMs, email) {
   var formData = new FormData();
+
+
   if (graph1 && graph1 instanceof File) {
     formData.append('graph1', graph1);
   }
@@ -14,6 +16,7 @@ export function sendFilesToServer(graph1, graph2, LMs, email) {
   if (email && typeof email === 'string') {
     formData.append('email', email);
   }
+
   return _postHelper('/upload', formData);
 }
 
@@ -25,7 +28,7 @@ function _postHelper(url, formData) {
         if (err) {
           reject(err);
         } else {
-          resolve(res.body);
+          resolve(resolve.body);
         }
     });
   })

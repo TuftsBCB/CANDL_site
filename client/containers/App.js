@@ -14,7 +14,23 @@ import {
 
 class MyApp extends Component {
   render() {
-    const {dispatch, graph1, graph2, LMs, g1Name, g2Name, lmName, email} = this.props;
+    const {dispatch, graph1, graph2, LMs, g1Name, g2Name, lmName, email, waiting, success, failure} = this.props;
+
+    let myString = null;
+    let myID = null;
+    if (waiting === 1){
+      myString = "Waiting for server..."
+    } else if (success === 1) {
+      myString = "Upload succeeded. CANDL is running. We will email you the output."
+      myID = "succ"
+    } else if (failure === 1) {
+      myString = "Script failed to run. Check the format of your data and try again."
+      myID = "fail"
+    } 
+
+    const disabled = g1Name === "" || g2Name === "" || lmName === "" || email === "";
+    const butt = disabled ?  <button disabled >Run CANDL!</button> : <button onClick={() => dispatch(submitAll(graph1, graph2, LMs, email))}>Run CANDL!</button>
+
 
     return (
       <div id="outside">
@@ -28,7 +44,11 @@ class MyApp extends Component {
           <AddEmail onClick={(e) => dispatch(changeEmail(e))} />
         </div>
         <div>
-          <button onClick={() => dispatch(submitAll(graph1, graph2, LMs, email))}>Run CANDL!</button>
+          {butt}
+        </div>
+
+        <div>
+          <h3 id={myID}> {myString}</h3>
         </div>
       </div>
     );
