@@ -1,7 +1,8 @@
 # CANDL web app in Node.js
 
 The CANDL web app is built using Node.js and React & Redux (from Facebook). Links:
-https://facebook.github.io/react/docs/getting-started.html http://redux.js.org/
+https://facebook.github.io/react/docs/getting-started.html 
+http://redux.js.org/
 
 ## Understanding, Configuring, and Building
 
